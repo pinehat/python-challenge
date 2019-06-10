@@ -6,7 +6,7 @@ import csv
 # Module for statistics calculations
 import statistics
 
-csvpath = os.path.join('..', 'Resources', 'budget_data.csv')
+csvpath = os.path.join('..', 'Resources', 'k.csv')
   
 with open(csvpath, newline='') as csvfile:
 
