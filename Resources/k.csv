@@ -1,6 +1,6 @@
-Date,Profit/Losses
-10-Jan,20
-10-Feb,40
-10-Mar,-30
-10-Apr,50
-10-May,-5
+Date,Profit/Losses,
+10-Jan,20,
+10-Feb,40,20
+10-Mar,-30,-70
+10-Apr,50,80
+10-May,-5,-55
