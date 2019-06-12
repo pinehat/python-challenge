@@ -35,8 +35,7 @@ with open(csvpath, newline='') as csvfile:
     print(f"Total Votes: {len(voter_id_list)}")
     print("-------------------------")
     for row in set(candidate_list):
-        pass
-        #print(row)
+        print(row)
 
 
     
