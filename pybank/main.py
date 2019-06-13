@@ -6,7 +6,7 @@ import csv
 # Module for statistics calculations
 import statistics
 
-csvpath = os.path.join('..', 'Resources', 'budget_data_test.csv')
+csvpath = os.path.join('..', 'Resources', 'budget_data.csv')
   
 with open(csvpath, newline='') as csvfile:
 
@@ -26,45 +26,41 @@ with open(csvpath, newline='') as csvfile:
     
     # Read each row of data after the header
     for row in csvreader:
+        row_count = row_count + 1
         net_total = net_total + int(row[1])
-    
-        if row_count != 0:
-            month_list.append(row[0])
+        month_list.append(row[0])
+
+        #current_pl = int(row[1])
+        
+        if row_count > 1:
             diff_pl = int(row[1]) - last_pl
             diffs_list.append(diff_pl)
 
-            print(diff_pl)
-
-            print(f"Rowcount is {row_count}, PL is {int(row[1])}, Last PL is {last_pl}")
-
-            if int(row[1]) > last_pl:
-                max_row = row_count
-            if int(row[1]) < last_pl:
-                min_row = row_count
+            #print(diff_pl)
+            #print(f"Rowcount is {row_count}, PL is {int(row[1])}, Last PL is {last_pl}")
         
         last_pl = int(row[1])
-        row_count = row_count + 1
+        
+    max_diff = max(diffs_list)
+    min_diff = min(diffs_list)
 
-    print("Min row = " +str(min_row))
-    print("Max row = " +str(max_row))
+    max_diff_row = diffs_list.index(max(diffs_list))
+    min_diff_row = diffs_list.index(min(diffs_list))
 
-    #max_months = month_list(max_row)
-    #print(f" max months = {max_months}")
+    max_diff_month = month_list[max_diff_row]
+    min_diff_month = month_list[min_diff_row]
 
-    #for row in csvreader:
-    #    if row[1] == max_p_and_l:
-    
-    #       max_month = row[0]
-    #       print("found max month" + str(max_month))
-        #if diffs_list[1] == min_p_and_l:
-            #max_month = month_list[row]
+ 
+
+    print("Min row = " +str(min_diff_row))
+    print("Max row = " +str(max_diff_row))
 
 #print(diffs_list)
 print("")
 print("Financial Analysis")
 print("----------------------------")
 print(f"Total Months: {row_count}")
-print(f"Total: {net_total}")
-print(f"Average Change: {statistics.mean(diffs_list)}")
-print(f"Greatest Increase in Profits: {max(diffs_list)}")
-print(f"Greatest Decrease in Profits: {min(diffs_list)}")
+print(f"Total: ${net_total}")
+print(f"Average Change: ${statistics.mean(diffs_list)}")
+print(f"Greatest Increase in Profits: {max_diff_month} ${max(diffs_list)}")
+print(f"Greatest Decrease in Profits: {min_diff_month} ${min(diffs_list)}")
