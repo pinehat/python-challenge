@@ -13,7 +13,7 @@ output_path = os.path.join("budget_analysis.txt")
   
 with open(csvpath, newline='') as csvfile:
 
-    # CSV reader specifies delimiter and variable that holds contents
+    # turn datafile into readable record
     csvreader = csv.reader(csvfile, delimiter=',')
 
     csv_header = next(csvreader)
@@ -59,6 +59,7 @@ with open(csvpath, newline='') as csvfile:
     min_diff_month = month_list[min_diff_row]
 
     # Reformat max and min months for screen and output file
+    #   This formatting is only good for years 2000–2099
     month_split = max_diff_month.split("-")
     max_diff_month = month_split[0] + "-20" + month_split[1]
     month_split = min_diff_month.split("-")
